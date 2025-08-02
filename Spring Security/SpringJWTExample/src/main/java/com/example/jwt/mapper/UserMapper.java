@@ -34,4 +34,12 @@ public class UserMapper {
         user.setAuthorities(authorityEntities);
         return user;
     }
+
+    public UserDto toDTO(UserEntity entity) {
+
+        return new UserDto(entity.getEmail(),
+                entity.getRole(),"*******",entity.getAuthorities().stream()
+                .map(Authority::getName).toList());
+
+    }
 }

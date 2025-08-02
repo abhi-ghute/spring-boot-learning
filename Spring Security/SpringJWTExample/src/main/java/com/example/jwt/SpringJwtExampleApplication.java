@@ -6,8 +6,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringJwtExampleApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException {
+
 		SpringApplication.run(SpringJwtExampleApplication.class, args);
+		Class.forName("com.mysql.cj.jdbc.Driver");
+//		System.out.println("Driver class found!");
 	}
 
 }

@@ -1,20 +1,28 @@
 package com.example.jwt.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
 public record UserDto(
 
-    @JsonProperty("email")
-    String email,
+        @NotBlank(message = "Email is mandatory")
+        @Email(message = "Invalid email format")
+        @JsonProperty("email")
+        String email,
 
-    @JsonProperty("role")
-    RoleEnum role,
+        @JsonProperty("role")
+        RoleEnum role,
 
-    @JsonProperty("password")
-    String password,
+        @NotBlank(message = "Password is mandatory")
+        @Size(min = 6, message = "Password must be at least 6 characters long")
+        @JsonProperty("password")
+        String password,
 
-    @JsonProperty("authorities")
-    List<AuthorityEnum> authorities
-){}
+        @JsonProperty("authorities")
+        List<AuthorityEnum> authorities
+) {
+}
