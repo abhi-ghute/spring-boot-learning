@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: OAuth2Application
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    url: jdbc:mysql://localhost:3306/springsecurity?useSSL=false&serverTimezone=UTC
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+    show-sql: true
+
+oauth2:
+  github:
+    client-id: Ov23lio6MKR3YnArx8aI
+    client-secret: ca66b97a3047d263dc0aa69f9496045fe2bc0222
+    scope: read:user,user:email
+    redirect-uri: http://localhost:8080/login/oauth2/callback
+
+#authorization-uri: https://github.com/login/oauth/authorize
+#token-uri: https://github.com/login/oauth/access_token
+#user-info-uri: https://api.github.com/user
