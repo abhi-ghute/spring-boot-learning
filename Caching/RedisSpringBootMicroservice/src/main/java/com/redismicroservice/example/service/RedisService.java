@@ -23,6 +23,7 @@ public class RedisService {
 
     public String saveUser(User user){
         String result = dbService.saveUser(user);
+        System.out.println("hello");
 
         logger.info("User stored in cache");
         redisTemplate.opsForValue().set(user.getUserId(),user, Duration.ofMinutes(10));
