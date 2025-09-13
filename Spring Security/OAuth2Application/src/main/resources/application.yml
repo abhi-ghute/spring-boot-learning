@@ -1,27 +1,30 @@
 spring:
   application:
     name: OAuth2Application
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    password: root
-    url: jdbc:mysql://localhost:3306/springsecurity?useSSL=false&serverTimezone=UTC
-    username: root
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
-        format_sql: true
-    show-sql: true
 
-oauth2:
+app:
   github:
     client-id: Ov23lio6MKR3YnArx8aI
-    client-secret: ca66b97a3047d263dc0aa69f9496045fe2bc0222
-    scope: read:user,user:email
-    redirect-uri: http://localhost:8080/login/oauth2/callback
+    client-secret: 662a7a6ca89a77a0c3f47aa09d312b5b7d76e083
+    authorize-url: https://github.com/login/oauth/authorize
+    token-url: https://github.com/login/oauth/access_token
+    user-url: https://api.github.com/user
+    emails-url: https://api.github.com/user/emails
+    scope: read:user user:email
+  jwt:
+    issuer: ${APP_JWT_ISSUER:http://localhost:8080}
+    audience: ${APP_JWT_AUDIENCE:api://default}
+    access-token-expiry-seconds: 900     # 15 min
+    refresh-token-expiry-seconds: 2592000 # 30 days
+    private-key-pem: ${APP_JWT_PRIVATE_KEY}   # PEM string or path (see README)
+    public-key-pem: ${APP_JWT_PUBLIC_KEY}
+  frontend:
+    url: ${APP_FRONTEND_URL:http://localhost:3000}
 
+security:
+  oauth:
+    state-cookie-name: OAUTH2_STATE
+    state-cookie-max-age-seconds: 300
 #authorization-uri: https://github.com/login/oauth/authorize
 #token-uri: https://github.com/login/oauth/access_token
 #user-info-uri: https://api.github.com/user

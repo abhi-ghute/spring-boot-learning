@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: Resilience4jExample
+
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      myCircuitBreaker:  # Name used in @CircuitBreaker(name = "myService")
+        slidingWindowType: COUNT_BASED         # or TIME_BASED
+        slidingWindowSize: 10                 # Number of calls to consider for failure rate
+        minimumNumberOfCalls: 5               # Minimum calls before circuit breaker evaluates failures
+        permittedNumberOfCallsInHalfOpenState: 3  # Trial calls when circuit is half-open
+        waitDurationInOpenState: 10s          # How long to wait before moving from OPEN to HALF_OPEN
+        failureRateThreshold: 50              # % of failures to open the circuit
+        slowCallRateThreshold: 50             # % of slow calls considered as failure
+        slowCallDurationThreshold: 2s         # Duration beyond which a call is considered "slow"
+        automaticTransitionFromOpenToHalfOpenEnabled: true  # Circuit will auto transition after waitDuration
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+
+server:
+  port: 8081
+
+
+logging:
+  level:
+    io.github.resilience4j: DEBUG
+    org.springframework.aop: DEBUG
+    org.springframework.web.reactive.function.client.ExchangeFunctions: DEBUG
