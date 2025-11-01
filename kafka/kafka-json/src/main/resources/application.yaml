@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: kafka-json
+
+  kafka:
+    # Address of the Kafka broker (local setup via docker-compose)
+    bootstrap-servers: localhost:9092
+
+#    consumer:
+#      # Consumer group name — messages with same group ID share load
+#      group-id: order-service-group
+
+#      # If no offset found for a consumer, read messages from the beginning
+#      auto-offset-reset: earliest
+
+#      # Deserialize key as String
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#
+#      # Deserialize value as JSON (automatically maps JSON -> Java object)
+#      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+
+#      properties:
+#        # Trust all packages for JSON deserialization (safe for dev only)
+#        spring.json.trusted.packages: "com.example.json.*"
+
+#    producer:
+#      # Serialize key as String
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#
+#      # Serialize value as JSON (automatically converts Java object -> JSON)
+#      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+#app:
+#  kafka:
+#    # Custom app property: Kafka topic name for orders
+#    topic: orders
+
+logging:
+  level:
+    # Default logging level
+    root: INFO
+
+    # More detailed Kafka logs (set DEBUG for deeper insights if needed)
+    org.springframework.kafka: INFO
