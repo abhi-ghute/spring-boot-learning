@@ -80,6 +80,4 @@ public class KafkaConfig {
         factory.setMissingTopicsFatal(false);
         return factory;
     }
-
-
 }
