@@ -14,8 +14,10 @@ public class AsyncCommandLineRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         asyncBasics.print();
-        asyncBasics.print();
-        asyncBasics.print();
-        asyncBasics.print();
+
+        asyncBasics.getExeceptionWithVoid();
+
+        asyncBasics.getExeceptionWithFuture().exceptionally(ex -> "Recovered from: " + ex.getMessage())
+                .thenAccept(System.out::println);
     }
 }
