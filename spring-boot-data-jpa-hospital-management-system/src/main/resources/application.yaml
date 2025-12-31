@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: spring-boot-data-jpa-hospital-management-system
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hospitalDB
+    username: postgres
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
